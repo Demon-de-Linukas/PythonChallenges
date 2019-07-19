@@ -7,6 +7,8 @@ from decimal import Decimal
 from decimal import getcontext
 from sympy import *
 from numpy import *
+from numpy.linalg import inv
+
 from sympy.abc import x, y
 
 # import sympy
@@ -32,6 +34,14 @@ e = math.e
 
 def sqrt(n):
     return float(math.sqrt(n))
+
+
+def oneDFunc(p1,p2):
+    n1=np.array([[p1[0],1],[p2[0],1]])
+    n2=np.array([p1[1],p2[1]])
+    lsg=np.dot(inv(n1),n2)
+    print(lsg)
+    return lsg
 
 
 def ln(n):
@@ -64,10 +74,25 @@ def getIntegrate(f, n):
     result = str(integrate(f, n))
     result += '+C'
     return result
-dt=np.array([15,12,3,17,5,8])
-ma=6*756-60**2
-print(np.sum(dt[:]*dt[:]))
-print(ma)
+
+
+def oneDgetY(a, b, x):
+    print(a*x+b)
+    return a*x+b
+
+parm=oneDFunc([15,0.25],[115,4.75])
+a=parm[0]
+b=parm[1]
+
+oneDgetY(a, b, 90)
+oneDgetY(a, b, 97.5)
+oneDgetY(a, b, 100)
+
+
+# dt=np.array([15,12,3,17,5,8])
+# ma=6*756-60**2
+# print(np.sum(dt[:]*dt[:]))
+# print(ma)
 
 #############################################################
 #        while True:
